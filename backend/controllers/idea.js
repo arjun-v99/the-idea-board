@@ -55,7 +55,6 @@ exports.updateIdeasUpvote = (req, res, next) => {
       return idea.save();
     })
     .then((result) => {
-      console.log(result);
       res.status(200).json(resJson);
     })
     .catch((err) => console.error(err));
