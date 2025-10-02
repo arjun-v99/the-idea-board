@@ -38,6 +38,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    command: npm run start:dev
     # Use bind mounts for development: changes on your machine reflect in the container
     volumes:
       - ./backend:/usr/src/app # Sync local folder with container's working directory

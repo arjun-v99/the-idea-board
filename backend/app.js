@@ -2,7 +2,16 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+
+// Configure CORS
+const corsOptions = {
+  // Allow requests from your Angular development server running on port 4200
+  origin: "http://localhost:4200",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow cookies and authentication headers
+};
+
+app.use(cors(corsOptions));
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true }));
 

@@ -17,8 +17,10 @@ RUN npm run build
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
 
+# 1. COPY THE CUSTOM CONFIGURATION FILE FIRST
+COPY nginx.conf /etc/nginx/conf.d/default.conf 
+
 # Copy the build output from the previous stage to Nginx's serving directory
-# NOTE: Replace 'my-app' with the actual output folder name from your Angular build
 COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
 COPY --from=build /app/dist/frontend/3rdpartylicenses.txt /usr/share/nginx/html/
 COPY --from=build /app/dist/frontend/prerendered-routes.json /usr/share/nginx/html/
