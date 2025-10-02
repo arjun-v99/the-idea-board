@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize("ideasdb", "ideauser", "ideapass", {
-  host: "localhost",
-  dialect: "postgresql",
+  host: "db",
+  dialect: "postgres",
 });
 
 module.exports = sequelize;
