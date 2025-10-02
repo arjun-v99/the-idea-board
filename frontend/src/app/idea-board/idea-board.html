@@ -1,0 +1,59 @@
+<header class="sticky top-0 z-50 bg-white shadow-md">
+  <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="#" class="text-2xl font-bold text-primary-blue">MarketingPro</a>
+    <div class="hidden md:flex space-x-6">
+      <a href="#features" class="text-gray-600 hover:text-primary-blue transition duration-300">Features</a>
+      <a href="#cta" class="text-gray-600 hover:text-primary-blue transition duration-300">Contact</a>
+    </div>
+    <a href="#cta" class="md:hidden px-4 py-2 text-sm font-medium text-white bg-primary-blue rounded-lg hover:bg-indigo-700 transition duration-300">Get Started</a>
+  </nav>
+</header>
+
+<section class="py-16 md:py-32 bg-white">
+  <div class="container mx-auto px-6 lg:px-8 flex flex-col items-center text-center" id="formCntainer">
+    <form (ngSubmit)="postIdea($event)" autocomplete="off" class="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
+      <h2 class="text-2xl font-bold text-primary-blue mb-4">Submit Your Idea</h2>
+      <div>
+        <label for="ideaName" class="block text-left text-gray-700 font-medium mb-1">Title</label>
+        <input id="ideaName" name="idea" type="text" required [formControl]="ideaName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue transition" />
+        <span>
+          {{ ideaName.value?.length }}/280
+        </span>
+      </div>
+      <button type="submit" class="w-full py-2 px-4 bg-gray-300 font-semibold rounded-lg hover:bg-gray-400 transition">Submit</button>
+    </form>
+
+    <!-- Ideas List -->
+    @if(ideas$ | async; as ideas){
+    @if(ideas.length > 0){
+    <div class="w-full max-w-2xl mt-12 space-y-6">
+      <h3 class="text-xl font-bold text-primary-blue mb-4 text-left">All Ideas</h3>
+      @for(idea of ideas; track idea.id){
+      <div class="bg-white rounded-xl shadow p-6 flex items-center justify-between">
+        <div class="text-left">
+          <div class="font-semibold text-lg text-gray-800">
+            {{ idea.name }}
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button (click)="upvoteIdea(idea.id)" class="px-3 py-1 bg-gray-300 rounded-lg hover:bg-gray-400 transition focus:outline-none">
+            Upvote
+          </button>
+          <span class="text-primary-blue font-bold">
+            {{ idea.upvotes }}</span>
+        </div>
+      </div>}
+    </div>
+    }@else {
+    <p class="text-gray-600 mt-8">No ideas submitted yet. Be the first to share your idea!</p>
+    }
+    }
+  </div>
+</section>
+
+<footer class="py-8 bg-primary-dark">
+  <div class="container mx-auto px-6 text-center text-gray-400 text-sm">
+    <p>&copy; 2025 MarketingPro Agency. All rights reserved.</p>
+    <p class="mt-2">Privacy Policy | Terms of Service</p>
+  </div>
+</footer>
