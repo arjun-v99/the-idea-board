@@ -13,8 +13,11 @@ A full-stack app for submitting, viewing, and upvoting ideas. Built with Angular
    git clone https://github.com/arjun-v99/the-idea-board.git
    cd the-idea-board
    ```
+2. **Setting Up Environment variables**
+   - Rename `.env.example` into `.env`
+   - Replace the variables values with the ones you want to use
 
-2. **Build and start all services:**
+3. **Build and start all services:**
    ```sh
    docker-compose up --build
    ```
@@ -23,11 +26,11 @@ A full-stack app for submitting, viewing, and upvoting ideas. Built with Angular
    - Start the backend API server (Node.js/Express)
    - Start the frontend (Angular, served via Nginx)
 
-3. **Access the app:**
+4. **Access the app:**
    - Frontend: [http://localhost:4200](http://localhost:4200)
    - Backend API: [http://localhost:3000](http://localhost:3000)
 
-4. **Stopping the app:**
+5. **Stopping the app:**
    ```sh
    docker-compose down
    ```

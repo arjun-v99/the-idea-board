@@ -3,13 +3,13 @@ services:
   db:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: ideasdb
-      POSTGRES_USER: ideauser
-      POSTGRES_PASSWORD: ideapass
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ideauser -d ideasdb"] # Command to check DB status
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"] # Command to check DB status
       interval: 5s                                  # Check every 5 seconds
       timeout: 5s                                   # Wait up to 5 seconds for a response
       retries: 5  
@@ -27,12 +27,12 @@ services:
       - "3000:3000"
     environment:
       # Use the SERVICE NAME 'db' as the hostname for connection
-      DB_HOST: db
-      DB_USER: ideauser
-      DB_PASSWORD: ideapass
-      DB_NAME: ideasdb
-      DB_PORT: 5432
-      NODE_ENV: development
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
+      NODE_ENV: ${NODE_ENV}
     # Wait until the 'db' service is healthy before starting the backend
     # NOTE: Your Node.js app must use a connection retry mechanism!
     depends_on:
