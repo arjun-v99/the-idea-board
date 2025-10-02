@@ -11,16 +11,16 @@
 
 <section class="py-16 md:py-32 bg-white">
   <div class="container mx-auto px-6 lg:px-8 flex flex-col items-center text-center" id="formCntainer">
-    <form (ngSubmit)="postIdea($event)" autocomplete="off" class="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
+    <form autocomplete="off" class="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
       <h2 class="text-2xl font-bold text-primary-blue mb-4">Submit Your Idea</h2>
       <div>
         <label for="ideaName" class="block text-left text-gray-700 font-medium mb-1">Title</label>
-        <input id="ideaName" name="idea" type="text" required [formControl]="ideaName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue transition" />
+        <input id="ideaName" type="text" required [formControl]="ideaName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue transition" />
         <span>
           {{ ideaName.value?.length }}/280
         </span>
       </div>
-      <button type="submit" class="w-full py-2 px-4 bg-gray-300 font-semibold rounded-lg hover:bg-gray-400 transition">Submit</button>
+      <button type="button" (click)="postIdea()" class="w-full py-2 px-4 bg-gray-300 font-semibold rounded-lg hover:bg-gray-400 transition">Submit</button>
     </form>
 
     <!-- Ideas List -->

@@ -12,4 +12,6 @@ router.post("/ideas", ideaController.postIdea);
 
 router.patch("/ideas-upvote/:ideaId", ideaController.updateIdeasUpvote);
 
+router.delete("/ideas", ideaController.flushAll);
+
 exports.routes = router;

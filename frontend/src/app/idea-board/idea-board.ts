@@ -21,10 +21,8 @@ export class IdeaBoard implements OnInit {
     this.ideas$ = this.apiService.getIdeas().pipe(map((response) => response.data));
   }
 
-  postIdea(event: Event) {
-    event.preventDefault();
-
-    const idea = 'dec';
+  postIdea() {
+    const idea = this.ideaName.value;
     console.log(idea);
     if (idea && idea.length < 280) {
       this.apiService.postIdea({ idea: idea }).subscribe((result) => {

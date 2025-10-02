@@ -70,3 +70,18 @@ exports.updateIdeasUpvote = (req, res, next) => {
       res.json(resJson);
     });
 };
+
+exports.flushAll = (req, res, next) => {
+  const resJson = { success: true, data: "Successfull" };
+
+  Idea.destroy({ where: {}, truncate: true })
+    .then(() => {
+      res.status(200).json(resJson);
+    })
+    .catch((err) => {
+      console.error(err);
+      resJson.success = false;
+      resJson.data = "Something went wrong!! Please try again after some time";
+      res.json(resJson);
+    });
+};
