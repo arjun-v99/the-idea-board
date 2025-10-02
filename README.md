@@ -66,5 +66,19 @@ A full-stack app for submitting, viewing, and upvoting ideas. Built with Angular
 - Make sure Docker Desktop is running.
 - If ports are in use, stop other services or change the ports in `docker-compose.yml`.
 
+# API Routes
+
+1.  FrontEnd
+-   "/" This is the home page. Loads the landing page.
+-   "/app" Route for loading "The idea board" app.
+
+2.  Backend
+-   METHOD: GET URL: "/" DESC: Base path, loads all ideas. i.e, redirects to "/ideas". 
+-   METHOD: GET URL: "/ideas" DESC: Loads all ideas. 
+-   METHOD: POST URL: "/ideas" DESC: Creates a new idea.
+-   METHOD: DELETE URL: "/ideas" DESC: Deletes all ideas
+-   METHOD: PATCH URL: "/ideas-upvote/:ideaId" DESC: Rgister upvote to a idea.
+
+
 ## License
 MIT
