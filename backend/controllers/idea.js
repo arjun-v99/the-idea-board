@@ -41,32 +41,39 @@ exports.postIdea = (req, res, next) => {
 };
 
 exports.updateIdeasUpvote = (req, res, next) => {
-  const prodId = req.params.ideaId;
-  const resJson = { success: true, data: "Successfull" };
-  if (!prodId) {
+  const ideaId = req.params.ideaId;
+  const resJson = { success: true, message: "Successfull" };
+  if (!ideaId) {
     resJson.success = false;
-    resJson.data = "Bad Request";
+    resJson.message = "Bad Request";
     res.status(400).json(resJson);
   }
 
   const upVote = req.body.upvote === "1" ? true : false;
 
-  Idea.findByPk(prodId)
+  let newUpvoteData = {};
+
+  Idea.findByPk(ideaId)
     .then((idea) => {
       if (upVote) {
         idea.upvotes = idea.upvotes + 1;
       } else {
         idea.upvotes = idea.upvotes - 1;
       }
+      newUpvoteData.id = idea.id;
+      newUpvoteData.name = idea.name;
+      newUpvoteData.upvotes = idea.upvotes;
       return idea.save();
     })
     .then((result) => {
+      resJson.data = newUpvoteData;
       res.status(200).json(resJson);
     })
     .catch((err) => {
       console.error(err);
       resJson.success = false;
-      resJson.data = "Something went wrong!! Please try again after some time";
+      resJson.message =
+        "Something went wrong!! Please try again after some time";
       res.json(resJson);
     });
 };

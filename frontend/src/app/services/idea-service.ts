@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiResponse, Idea } from '../interfaces/idea-interface';
+import { ApiResponse, Idea, UpvoteResponse } from '../interfaces/idea-interface';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 
@@ -18,13 +18,12 @@ export class IdeaService {
   }
 
   postIdea(idea: { idea: string }): Observable<ApiResponse<Idea>> {
-    console.log(idea);
     const API_ENDPOINT = `${this.API_URL}/api/ideas/`;
     return this.http.post<ApiResponse<Idea>>(API_ENDPOINT, idea);
   }
 
-  upvoteIdea(ideaId: number): Observable<ApiResponse<Idea>> {
+  upvoteIdea(ideaId: number): Observable<UpvoteResponse> {
     const API_ENDPOINT = `${this.API_URL}/api/ideas-upvote/${ideaId}/`;
-    return this.http.patch<ApiResponse<Idea>>(API_ENDPOINT, { upvote: '1' });
+    return this.http.patch<UpvoteResponse>(API_ENDPOINT, { upvote: '1' });
   }
 }
