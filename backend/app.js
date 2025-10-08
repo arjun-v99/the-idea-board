@@ -8,7 +8,7 @@ const app = express();
 // CORS configuration for both development and production
 const allowedOrigins = [
   "http://localhost:4200", // Local development
-  "https://your-frontend.railway.app", // Production - UPDATE THIS after deploying frontend!
+  "https://the-idea-board-production-8d9a.up.railway.app", // Production - UPDATE THIS after deploying frontend!
 ];
 
 // Configure CORS
