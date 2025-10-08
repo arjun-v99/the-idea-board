@@ -16,9 +16,11 @@
       <div>
         <label for="ideaName" class="block text-left text-gray-700 font-medium mb-1">Title</label>
         <input id="ideaName" type="text" required [formControl]="ideaName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue transition" />
+        @if((ideaName.value?.length ?? 0) > 0){
         <span>
-          {{ ideaName.value?.length }}/280
+          {{ ideaName.value?.length ?? 0 }}/280
         </span>
+        }
       </div>
       <button type="button" (click)="postIdea()" class="w-full py-2 px-4 bg-gray-300 font-semibold rounded-lg hover:bg-gray-400 transition">Submit</button>
       <a routerLink="/" class="text-primary-blue hover:underline">Go Back</a>
