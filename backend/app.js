@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 
@@ -7,7 +9,7 @@ const app = express();
 const corsOptions = {
   // Allow requests from your Angular development server running on port 4200
   origin: "http://localhost:4200",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   credentials: true, // Allow cookies and authentication headers
 };
 

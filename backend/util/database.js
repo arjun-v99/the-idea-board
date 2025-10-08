@@ -17,11 +17,16 @@ if (process.env.DATABASE_URL) {
   });
 } else {
   // Development: Use Docker values
-  sequelize = new Sequelize("ideasdb", "ideauser", "ideapass", {
-    host: "db",
-    dialect: "postgres",
-    logging: false, // Optional: set to console.log to see SQL queries
-  });
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      host: process.env.DB_HOST || "db",
+      dialect: "postgres",
+      logging: false,
+    }
+  );
 }
 
 module.exports = sequelize;
