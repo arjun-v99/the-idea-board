@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend.railway.app/api/', // UPDATE THIS after deploying backend!
+  apiUrl: 'the-idea-board-production.up.railway.app', // UPDATE THIS after deploying backend!
 };

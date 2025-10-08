@@ -13,18 +13,18 @@ export class IdeaService {
   API_URL = environment.apiUrl;
 
   getIdeas(): Observable<ApiResponse<Idea[]>> {
-    const API_ENDPOINT = `${this.API_URL}ideas/`;
+    const API_ENDPOINT = `${this.API_URL}/api/ideas/`;
     return this.http.get<ApiResponse<Idea[]>>(API_ENDPOINT);
   }
 
   postIdea(idea: { idea: string }): Observable<ApiResponse<Idea>> {
     console.log(idea);
-    const API_ENDPOINT = `${this.API_URL}ideas/`;
+    const API_ENDPOINT = `${this.API_URL}/api/ideas/`;
     return this.http.post<ApiResponse<Idea>>(API_ENDPOINT, idea);
   }
 
   upvoteIdea(ideaId: number): Observable<ApiResponse<Idea>> {
-    const API_ENDPOINT = `${this.API_URL}ideas-upvote/${ideaId}/`;
+    const API_ENDPOINT = `${this.API_URL}/api/ideas-upvote/${ideaId}/`;
     return this.http.patch<ApiResponse<Idea>>(API_ENDPOINT, { upvote: '1' });
   }
 }
