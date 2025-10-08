@@ -5,10 +5,24 @@ const cors = require("cors");
 
 const app = express();
 
+// CORS configuration for both development and production
+const allowedOrigins = [
+  "http://localhost:4200", // Local development
+  "https://your-frontend.railway.app", // Production - UPDATE THIS after deploying frontend!
+];
+
 // Configure CORS
 const corsOptions = {
-  // Allow requests from your Angular development server running on port 4200
-  origin: "http://localhost:4200",
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, Postman, curl, etc.)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   credentials: true, // Allow cookies and authentication headers
 };
