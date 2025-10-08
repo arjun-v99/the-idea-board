@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiResponse, Idea } from '../interfaces/idea-interface';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class IdeaService {
   private http = inject(HttpClient);
 
-  API_URL = 'http://localhost:3000/api/';
+  API_URL = environment.apiUrl;
 
   getIdeas(): Observable<ApiResponse<Idea[]>> {
     const API_ENDPOINT = `${this.API_URL}ideas/`;
